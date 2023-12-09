@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    var count=0;
+    // put method handling
+    function parsedResponse(data)
+    {
+        console.log(data);
+
+        //after we have pushed the data now we can actually show on html
+        var parent="";
+        parent=document.getElementById("todo");
+        var child=document.createElement("div");
+          
+          var grandchild=document.createElement("span");
+          grandchild.innerHTML=count+1 +". "+data.title + "------>"  +"        ";
+
+          var grandchild_2=document.createElement("span");
+          grandchild_2.innerHTML=data.description +"            ";
+
+          var grandchild_3=document.createElement("button");
+          grandchild_3.innerHTML="DELETE";
+
+
+          var grandchild_4=document.createElement("br");
+
+          child.appendChild(grandchild);
+          child.appendChild(grandchild_2);
+          child.appendChild(grandchild_3);
+          child.appendChild(grandchild_4);
+          child.appendChild(grandchild_4);
+          
+
+          parent.appendChild(child);
+        count++;
+
+    }
+    function callback(resp)
+    {
+        
+        resp.json().then(parsedResponse);
+    }
+    function onPress(){
+        var t = document.getElementById("title").value;
+        var d=document.getElementById("description").value;
+    
+        fetch("http://localhost:3000/todos", {method: "POST",
+            //var t=getElementsById(fname) ;
+            body:JSON.stringify({
+                
+                title:t,
+                description:d
+            }),
+            headers:
+            {
+                "Content-Type":"application/json"
+            }
+            
+        }
+
+        
+        ).then(callback);
+
+        
+    }
+
+
+    // get method handling
+    function parsedResponse_1(data)
+    { var parent="";
+        parent=document.getElementById("todo");
+       
+
+       for(var i=0;i<data.length;i++)
+       {
+          var child=document.createElement("div");
+          
+          var grandchild=document.createElement("span");
+          grandchild.innerHTML=i+1 +". "+data[i].title + "            ";
+
+          var grandchild_2=document.createElement("span");
+          grandchild_2.innerHTML=data[i].description +"            ";
+
+          var grandchild_3=document.createElement("button");
+          grandchild_3.innerHTML="DELETE";
+
+
+          var grandchild_4=document.createElement("br");
+
+          child.appendChild(grandchild);
+          child.appendChild(grandchild_2);
+          child.appendChild(grandchild_3);
+          child.appendChild(grandchild_4);
+          child.appendChild(grandchild_4);
+          
+
+          parent.appendChild(child);
+          
+
+          
+       }
+    }
+    function callback_1(resp)
+    {
+        
+        resp.json().then(parsedResponse_1);
+    }
+    function onget(){
+       
+        fetch("http://localhost:3000/todos", {method: "GET",
+            //var t=getElementsById(fname) ;
+            
+            
+        }
+
+        
+        ).then(callback_1);
+
+        
+    }
+    onget();
+
+</script>
+<body>
+    <h1>TO DO LIST</h1>
+    
+    <label for="fname">Title:</label>
+    <input type="text" id="title" name="title"><br><br>
+    <label for="lname">Description:</label>
+    <input type="text" id="description" name="description"><br><br>
+    <button onclick="onPress()">ADD Todo</button>
+    <div id="todo"></div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+           
+            
+            
+            background-color:antiquewhite;
+            margin:0px 0px;
+            padding:2px 2px;
+        }
+        .click{
+            border-radius: 4px;
+            background-color: blueviolet;
+            font-size:'15px bold';
+            color:aquamarine;
+        }
+        #firstcontainer{
+            border-radius: 4px;
+           
+            border:2px solid red;
+            margin:4px 4px;
+            padding:4px 0px;
+
+        }
+        #secondcontainer{
+            border-radius: 4px;
+            border:2px solid red;
+            margin:4px 4px;
+            padding:4px 0px;
+
+        }
+        .container{
+            
+            padding:10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            
+            background-color: aqua;
+        }
+        .num
+        {
+            margin:4px 4px;
+            border-radius: 4px;
+            background-color: bisque;
+        }
+        .op
+        {
+            margin:4px 4px;
+        }
+        #result
+        {
+            
+            border-radius: 4px;
+            border:2px solid red;
+            margin:4px 4px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1 color="white">Calculator</h1>
+    <div id="result" Class="container">
+        
+
+    </div>
+    <div id="secondcontainer" class="container">
+        <div class="ops">
+            <button onclick="calculateSum()" class="op">+</button>
+            <button onclick="subtract()" class="op">-</button>
+            <button onclick="divide()" class="op">/</button>
+            <button onclick="multiply()" class="op">*</button>
+            <button  id="sample" class="op">click me </button>
+        </div>
+        
+        
+
+        </div>
+        
+    </div>
+    <div id="firstcontainer" class="container">
+        <div>
+            <input type="text" placeholder="firstnum" id="num1" class="num">
+        </div>
+        <div>
+            <input type="text" placeholder="secondnum"id="num2" class="num">
+        </div>
+        
+    </div>
+    
+    <script src="index.js"> </script>
+</body>
+</html>
